@@ -1,42 +1,50 @@
 import PropTypes from 'prop-types'
-// eslint-disable-next-line no-unused-vars
-import { experimentalStyled as styled, makeStyles } from '@mui/material/styles'
+import {
+   experimentalStyled as styled,
+   // eslint-disable-next-line no-unused-vars
+   makeStyles,
+   ThemeProvider,
+} from '@mui/material/styles'
 import MuiFormControl from '@mui/material/FormControl'
 import MuiInputLabel from '@mui/material/InputLabel'
 import MuiInput from '@mui/material/Input'
 import ClearIcon from '@mui/icons-material/Clear'
 import CheckIcon from '@mui/icons-material/Check'
-import styles from './customInputStyles'
+// import styles from './customInputStyles'
+import customInputTheme from './customeInputTheme'
 
 // eslint-disable-next-line no-unused-vars
-const FormControlRoot = styled(MuiFormControl)(({ theme }) => ({
-   ...styles.formControl,
+const FormControlRoot = styled(MuiFormControl, {
+   overridesResolver: (props, styl) => [styl.root],
+   // eslint-disable-next-line no-unused-vars
+})(({ theme }) => ({
+   // ...styles.formControl,
 }))
 
-const InputLabelRoot = styled(MuiInputLabel)(
-   ({ error, success, rtlActive }) => ({
-      ...(error && styles.labelRootError),
-      ...styles.labelRoot,
-      ...(success && !error && styles.labelRootSuccess),
-      ...(rtlActive && styles.underline),
-   })
-)
-const InputRoot = styled(MuiInput)(
-   ({ error, success, labelText, disabled }) => ({
-      ...styles.underline,
-      ...(labelText === undefined && styles.marginTop),
-      ...(error && styles.underlineError),
-      ...(success && !error && styles.underlineSuccess),
-      ...(disabled && styles.disabled),
-   })
-)
-const ClearIconRoot = styled(ClearIcon)(() => ({
-   ...styles.feedback,
-   ...styles.labelRootError,
+const InputLabelRoot = styled(MuiInputLabel, {
+   overridesResolver: (props, styl) => [styl.root],
+   // eslint-disable-next-line no-unused-vars
+})(({ theme, error, success, rtlActive }) => ({
+   ...(error && theme.labelRootError),
+   // ...styles.labelRoot,
+   ...(success && !error && theme.labelRootSuccess),
+   ...(rtlActive && theme.labelRTL),
 }))
-const CheckIconRoot = styled(CheckIcon)(() => ({
-   ...styles.feedback,
-   ...styles.labelRootSuccess,
+const InputRoot = styled(MuiInput, {
+   overridesResolver: (props, styl) => [styl.root],
+})(({ theme, error, success, labelText, disabled }) => ({
+   ...(labelText === undefined && theme.marginTop),
+   ...(error && theme.underlineError),
+   ...(success && !error && theme.underlineSuccess),
+   ...(disabled && theme.disabled),
+}))
+const ClearIconRoot = styled(ClearIcon)(({ theme }) => ({
+   ...theme.feedback,
+   ...theme.labelRootError,
+}))
+const CheckIconRoot = styled(CheckIcon)(({ theme }) => ({
+   ...theme.feedback,
+   ...theme.labelRootSuccess,
 }))
 const CustomInput = (props) => {
    const {
@@ -59,27 +67,29 @@ const CustomInput = (props) => {
       step: inputProps && inputProps.step ? inputProps.step : undefined,
    }
    return (
-      <FormControlRoot
-         {...formControlProps}
-         className={formControlProps.className}
-      >
-         {labelText !== undefined ? (
-            <InputLabelRoot htmlFor={id} {...labelProps}>
-               {labelText}
-            </InputLabelRoot>
-         ) : null}
-         <InputRoot
-            classes={{
-               root: marginTop,
-               disabled: styles.disabled,
-               underline: underlineClasses,
-            }}
-            id={id}
-            {...inputProps}
-            inputProps={newInputProps}
-         />
-         {error ? <ClearIconRoot /> : success ? <CheckIconRoot /> : null}
-      </FormControlRoot>
+      <ThemeProvider theme={customInputTheme}>
+         <FormControlRoot
+            {...formControlProps}
+            className={formControlProps.className}
+         >
+            {labelText !== undefined ? (
+               <InputLabelRoot htmlFor={id} {...labelProps}>
+                  {labelText}
+               </InputLabelRoot>
+            ) : null}
+            <InputRoot
+               // classes={{
+               //    root: marginTop,
+               //    disabled: styles.disabled,
+               //    underline: underlineClasses,
+               // }}
+               id={id}
+               {...inputProps}
+               inputProps={newInputProps}
+            />
+            {error ? <ClearIconRoot /> : success ? <CheckIconRoot /> : null}
+         </FormControlRoot>
+      </ThemeProvider>
    )
 }
 
