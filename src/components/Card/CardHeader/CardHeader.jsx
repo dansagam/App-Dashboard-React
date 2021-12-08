@@ -1,24 +1,37 @@
 import MuiCardHeader from '@mui/material/CardHeader'
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles'
-import styles from './cardHeaderStyles'
+import { styled, ThemeProvider } from '@mui/material/styles'
+import customCardHeaderTheme from './customCardHeaderTheme'
+// import styles from './cardHeaderStyles'
 
 const CardHeaderRoot = styled(MuiCardHeader, {
    shouldForwardProp: (prop) => prop !== 'color',
-})(({ color }) => ({
-   ...(color && styles[`${color}CardHeader`]),
-   ...styles.cardHeader,
-   ...(plain && styles.cardHeaderPlain),
-   ...(stats && styles.cardHeaderStats),
-   ...(icon && styles.cardHeaderIcon),
+   slot: 'Root',
+   overridesResolver: (props, style) => [
+      style.root,
+      props.color && style[`${props.color}CardHeader`],
+   ],
+})(({ theme, plain, stats, icon }) => ({
+   ...(plain && theme.cardHeaderPlain),
+   ...(stats && theme.cardHeaderStats),
+   ...(icon && theme.cardHeaderIcon),
 }))
 
 const CardHeader = (props) => {
    const { className, children, color, plain, stats, icon, ...rest } = props
    return (
-      <CardHeaderRoot {...rest} color={color} className={className}>
-         {children}
-      </CardHeaderRoot>
+      <ThemeProvider theme={customCardHeaderTheme}>
+         <CardHeaderRoot
+            {...rest}
+            stats={stats}
+            icon={icon}
+            plain={plain}
+            color={color}
+            className={className}
+         >
+            {children}
+         </CardHeaderRoot>
+      </ThemeProvider>
    )
 }
 

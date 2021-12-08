@@ -1,30 +1,33 @@
 import MuiCardActions from '@mui/material/CardActions'
-import { styled } from '@mui/material/styles'
-import styles from './cardFooterStyles'
+import { styled, ThemeProvider } from '@mui/material/styles'
+// import styles from './cardFooterStyles'
+import PropTypes from 'prop-types'
+import customCardFooterTheme from './customCardFooterTheme'
 
-const CardFooterRoot = styled(MuiCardActions)(
-   ({ plain, profile, stats, chart }) => ({
-      ...styles.cardFooter,
-      ...(plain && styles.cardFooterPlain),
-      ...(profile && styles.cardFooterProfile),
-      ...(chart && styles.cardFooterChart),
-      ...(stats && styles.cardFooterStats),
-   })
-)
+const CardFooterRoot = styled(MuiCardActions, {
+   overridesResolver: (props, style) => [style.root],
+})(({ theme, plain, profile, stats, chart }) => ({
+   ...(plain && theme.cardFooterPlain),
+   ...(profile && theme.cardFooterProfile),
+   ...(chart && theme.cardFooterChart),
+   ...(stats && theme.cardFooterStats),
+}))
 
 const CardFooter = (props) => {
    const { className, children, plain, profile, stats, chart, ...rest } = props
    return (
-      <CardFooterRoot
-         {...rest}
-         plain={plain}
-         chart={chart}
-         profile={profile}
-         stats={stats}
-         className={className}
-      >
-         {children}
-      </CardFooterRoot>
+      <ThemeProvider theme={customCardFooterTheme}>
+         <CardFooterRoot
+            {...rest}
+            plain={plain}
+            chart={chart}
+            profile={profile}
+            stats={stats}
+            className={className}
+         >
+            {children}
+         </CardFooterRoot>
+      </ThemeProvider>
    )
 }
 

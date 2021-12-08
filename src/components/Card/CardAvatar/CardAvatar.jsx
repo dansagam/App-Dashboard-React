@@ -1,17 +1,27 @@
 import MuiCardMedia from '@mui/material/CardMedia'
-import { styled } from '@mui/material/styles'
-import styles from './cardAvatarStyles'
+import MuiCardHeader from '@mui/material/CardHeader'
+import { styled, ThemeProvider } from '@mui/material/styles'
+import PropTypes from 'prop-types'
+// import Avatar from '@mui/material/Avatar'
+import customCardAvatarTheme from './customCardAvatarTheme'
+// import styles from './cardAvatarStyles'
 
 const CardMediaRoot = styled(MuiCardMedia, {
    shouldForwardProp: (prop) => prop !== 'profile' && prop !== 'plain',
-})(({ profile, plain }) => ({
-   ...(profile && styles.cardAvatarProfile),
-   ...(plain && styles.cardAvatarPlain),
-   ...styles.cardAvatar,
+   overridesResolver: (props, styl) => [styl.root],
+   // eslint-disable-next-line no-unused-vars
+})(({ theme, profile, plain }) => ({
+   // ...(profile && theme.cardAvatarProfile),
+   // ...(plain && theme.cardAvatarPlain),
+   // ...theme.cardAvatar,
 }))
+// eslint-disable-next-line no-unused-vars
+const CardHeaderRoot = styled(MuiCardHeader, {
+   overridesResolver: (props, styl) => [styl.root],
+})(() => ({}))
 const CardAvatar = (props) => {
    const {
-      children,
+      // children,
       className,
       plain,
       component,
@@ -21,22 +31,26 @@ const CardAvatar = (props) => {
       ...rest
    } = props
    return (
-      <CardMediaRoot
-         className={className}
-         plain={plain}
-         profile={profile}
-         {...rest}
-         alt={alt}
-         image={image}
-         component={component}
-      >
-         {children}
-      </CardMediaRoot>
+      <ThemeProvider theme={customCardAvatarTheme}>
+         {profile ? (
+            <CardMediaRoot
+               className={className}
+               plain={plain}
+               profile={profile}
+               {...rest}
+               alt={alt}
+               image={image}
+               component={component}
+            />
+         ) : (
+            <div />
+         )}
+      </ThemeProvider>
    )
 }
 
 CardAvatar.propTypes = {
-   children: PropTypes.node.isRequired,
+   // children: PropTypes.node.isRequired,
    className: PropTypes.string,
    alt: PropTypes.string,
    component: PropTypes.oneOf(['img']).isRequired,

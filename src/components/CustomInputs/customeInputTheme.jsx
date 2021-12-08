@@ -92,6 +92,11 @@ const customInputTheme = createTheme({
       MuiInput: {
          styleOverrides: {
             root: {
+               '&.Mui-disabled': {
+                  '&:before': {
+                     backgroundColor: 'transparent !important',
+                  },
+               },
                '&:hover:not($disabled):before,&:before': {
                   borderColor: `${grayColor[4]} !important`,
                   borderWidth: '1px !important',
@@ -100,11 +105,6 @@ const customInputTheme = createTheme({
                   borderColor: primaryColor[0],
                },
                marginTop: '16px',
-            },
-            disabled: {
-               '&:before': {
-                  backgroundColor: 'transparent !important',
-               },
             },
          },
       },

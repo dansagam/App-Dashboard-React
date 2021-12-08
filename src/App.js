@@ -1,13 +1,30 @@
-import logo from './logo.svg'
 import './App.css'
 import Button from './components/CustomButtons/Button'
 import Input from './components/CustomInputs/Input'
 import Card from './components/Card/Card/Card'
+import CardAvatar from './components/Card/CardAvatar/CardAvatar'
+import CardBody from './components/Card/CardBody/CardBody'
+import CardFooter from './components/Card/CardFooter/CardFooter'
+import CardHeader from './components/Card/CardHeader/CardHeader'
+// import avatar from './img/faces/marc.jpg'
 
 const App = function () {
    return (
       <div className="App">
-         <Card>
+         <Card plain>
+            <CardHeader color="primary" plain>
+               <h4 color="red">Edit Profile</h4>
+               <p>Complete your profile</p>
+            </CardHeader>
+            <CardAvatar
+               component="img"
+               profile
+               image="./img/faces/marc.jpg"
+               height="194"
+            />
+            <CardBody plain>
+               dsdkdsdsdsdadsfdsfasdfdfjsld loremdsdjbkdslsdjnsndl
+            </CardBody>
             <Input
                labelText="Lamborghini Mercy, ."
                id="about-me"
@@ -19,24 +36,12 @@ const App = function () {
                   rows: 5,
                }}
             />
+            <CardFooter>
+               <Button color="danger" round fullWidth>
+                  help
+               </Button>
+            </CardFooter>
          </Card>
-         <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-               Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-               className="App-link"
-               href="https://reactjs.org"
-               target="_blank"
-               rel="noopener noreferrer"
-            >
-               Learn React
-            </a>
-            <Button color="danger" round fullWidth>
-               help
-            </Button>
-         </header>
       </div>
    )
 }

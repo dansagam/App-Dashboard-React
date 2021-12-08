@@ -1,18 +1,25 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles'
+import { styled, ThemeProvider } from '@mui/material/styles'
 import MuiIcon from '@mui/material/Icon'
-import styles from './cardIconStyles'
+// import styles from './cardIconStyles'
+import customCardIconTheme from './customeCardIconTheme'
 
-const CardIconRoot = styled(MuiIcon)(({ color }) => ({
-   ...styles.cardIcon,
-   ...(color && styles[`${color}CardHeader`]),
-}))
+const CardIconRoot = styled(MuiIcon, {
+   shouldForwardProp: (prop) => prop !== 'color',
+   overridesResolver: (props, style) => [
+      style.root,
+      props.color && style[`${props.color}CardHeader`],
+   ],
+   // eslint-disable-next-line no-unused-vars
+})(({ theme }) => ({}))
 const CardIcon = () => {
    const { className, children, color, ...rest } = props
    return (
-      <CardIconRoot {...rest} color={color} className={className}>
-         {children}
-      </CardIconRoot>
+      <ThemeProvider theme={customCardIconTheme}>
+         <CardIconRoot {...rest} color={color} className={className}>
+            {children}
+         </CardIconRoot>
+      </ThemeProvider>
    )
 }
 
