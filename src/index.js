@@ -4,6 +4,7 @@ import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import './assets/css/material-dashboard-react.css'
 
 ReactDOM.render(
    <React.StrictMode>

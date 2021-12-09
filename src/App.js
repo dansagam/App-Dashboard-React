@@ -10,6 +10,8 @@ import CardFooter from './components/Card/CardFooter/CardFooter'
 import CardHeader from './components/Card/CardHeader/CardHeader'
 import AdminNavbarLinks from './components/Navbars/AdminNavbarLinks'
 import Navbar from './components/Navbars/Navbar'
+import Sidebar from './components/Sidebars/Sidebar'
+import dashboardRoutes from './routes'
 // import avatar from './img/faces/marc.jpg'
 
 const App = function () {
@@ -17,6 +19,11 @@ const App = function () {
       <div className="App">
          <Navbar />
          <AdminNavbarLinks />
+         <Sidebar
+            logoText="Kayode"
+            logo="./img/reactlogo.png"
+            routes={dashboardRoutes}
+         />
          <Card plain>
             <CardHeader color="primary" plain>
                <h4 color="red">Edit Profile</h4>

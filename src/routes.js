@@ -1,3 +1,4 @@
+// @material-ui/icons
 import Dashboard from '@mui/icons-material/Dashboard'
 import Person from '@mui/icons-material/Person'
 import LibraryBooks from '@mui/icons-material/LibraryBooks'
@@ -6,6 +7,16 @@ import LocationOn from '@mui/icons-material/LocationOn'
 import Notifications from '@mui/icons-material/Notifications'
 import Unarchive from '@mui/icons-material/Unarchive'
 import Language from '@mui/icons-material/Language'
+// core components/views for Admin layout
+import DashboardPage from './views/Dashboard/Dashboard'
+import Icons from './views/Icons/Icons'
+import Maps from './views/Maps/Maps'
+import NotificationsPage from './views/Notifications/Notifications'
+import RTLPage from './views/RTLPage/RTLPage'
+import TableList from './views/TableList/TableList'
+import Typography from './views/Typography/Typography'
+import UpgradeToPro from './views/UpgradeToPro/UpgradeToPro'
+import UserProfile from './views/UserProfile/UserProfile'
 
 const dashboardRoutes = [
    {
