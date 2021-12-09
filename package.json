@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^12.8.3",
     "chartist": "^0.11.4",
     "history": "^5.1.0",
+    "perfect-scrollbar": "^1.5.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
