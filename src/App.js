@@ -9,11 +9,13 @@ import CardBody from './components/Card/CardBody/CardBody'
 import CardFooter from './components/Card/CardFooter/CardFooter'
 import CardHeader from './components/Card/CardHeader/CardHeader'
 import AdminNavbarLinks from './components/Navbars/AdminNavbarLinks'
+import Navbar from './components/Navbars/Navbar'
 // import avatar from './img/faces/marc.jpg'
 
 const App = function () {
    return (
       <div className="App">
+         <Navbar />
          <AdminNavbarLinks />
          <Card plain>
             <CardHeader color="primary" plain>
