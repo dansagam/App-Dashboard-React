@@ -1,3 +1,3 @@
-const Dashboard = () => <div />
+const Dashboard = () => <div>dashboard</div>
 
 export default Dashboard

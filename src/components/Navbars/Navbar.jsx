@@ -11,7 +11,7 @@ import Menu from '@mui/icons-material/Menu'
 import AdminNavbarLinks from './AdminNavbarLinks'
 import RTLNavbarLinks from './RTLNavbarLinks'
 import Button from '../CustomButtons/Button'
-// import useRoutesName from '../../hooks/useRouteName'
+import useRoutesName from '../../hooks/useRouteName'
 
 import navbarTheme from './headerTheme'
 
@@ -20,8 +20,8 @@ const useStyles = makeStyles(navbarTheme)
 
 const Navbar = (props) => {
    const classes = useStyles()
-   const routeName = 'ssss'
-   // const routeName = useRoutesName()
+   // const routeName = 'ssss'
+   const routeName = useRoutesName()
    // eslint-disable-next-line no-unused-vars
    const { color, rtlActive, handleDrawerToggle, routes } = props
    return (

@@ -7,6 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import Button from '../CustomButtons/Button'
 
+const imagine1 = './img/sidebar-1.jpg'
+const imagine2 = './img/sidebar-2.jpg'
+const imagine3 = './img/sidebar-3.jpg'
+const imagine4 = './img/sidebar-4.jpg'
+
 const FixedPlugin = (props) => {
    const {
       handleColorClick,

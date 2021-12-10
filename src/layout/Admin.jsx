@@ -1,15 +1,17 @@
-import { createRef, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { createRef, useEffect, useState } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import PerfectScrollbar from 'perfect-scrollbar'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
+import { makeStyles } from '@mui/styles'
 // eslint-disable-next-line no-unused-vars
-import { styled, ThemeProvider, makeStyles } from '@mui/material/styles'
+import { styled, ThemeProvider, createTheme } from '@mui/material/styles'
 import Navbar from '../components/Navbars/Navbar'
 import Footer from '../components/Footer/Footer'
 import Sidebar from '../components/Sidebars/Sidebar'
 import FixedPlugin from '../components/FixedPlugin/FixedPlugin'
 import routes from '../routes'
 import appStyle from './adminTheme'
+// import bgImage from './img/sidebar-2.jpg'
 
 let ps
 
@@ -19,25 +21,28 @@ const switchRoutes = (
          if (prop.layout === '/admin') {
             return (
                <Route
-                  element={<prop.component />}
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   path={prop.layout + prop.path}
+                  element={<prop.component />}
                />
             )
          }
          return null
       })}
       {/* //must change the element view component */}
-      <Route path="/admin" element={<Footer />} />
+      <Route
+         path="/admin"
+         element={<Navigate replace to="/admin/dashboard" />}
+      />
    </Routes>
 )
-
-const useStyles = makeStyles(appStyle)
+const theme = createTheme()
+const useStyles = makeStyles(appStyle(theme))
 const Admin = ({ ...rest }) => {
    const classes = useStyles()
    const mainPanel = createRef()
-   const [image, setImage] = useState(bgImage)
+   const [image, setImage] = useState('./img/sidebar-2.jpg')
    const [color, setColor] = useState('blue')
    const [fixedClasses, setFixedClasses] = useState('dropdown show')
    const [mobileOpen, setMobileOpen] = useState(false)
@@ -85,7 +90,7 @@ const Admin = ({ ...rest }) => {
          <Sidebar
             routes={routes}
             logoText="Creative Tim"
-            logo={logo}
+            logo="./img/reactlogo.png"
             image={image}
             handleDrawerToggle={handleDrawerToggle}
             open={mobileOpen}
