@@ -1,35 +1,37 @@
-import MuiButton from '@mui/material/Button'
-import {
-   experimentalStyled as styled,
-   // makeStyles,
-   ThemeProvider,
-} from '@mui/material/styles'
+import Button from '@mui/material/Button'
+import { makeStyles } from '@mui/styles'
+// import {
+//    experimentalStyled as styled,
+//    // makeStyles,
+//    ThemeProvider,
+// } from '@mui/material/styles'
 import PropTypes from 'prop-types'
-// import styles from './buttonStyles'
-import customButtonTheme from './customButtonTheme'
+import styles from './buttonStyles'
+// import customButtonTheme from './customButtonTheme'
 
-// const useStyles = makeStyles(styles)
+const useStyles = makeStyles(styles)
 
-const ButtonRoot = styled(MuiButton, {
-   shouldForwardProp: (prop) => prop !== 'size' && prop !== 'color',
-   name: 'MyButtonComponent',
-   slot: 'Root',
-   overridesResolver: (props, styl) => [
-      styl.root,
-      props.color && styl[props.color],
-      props.size && styl[props.size],
-      props.round && styl.round,
-      props.link && styl.link,
-      props.block && styl.block,
-      props.simple && styl.simple,
-      props.justIcon && styl.justIcon,
-   ],
-})(
-   // eslint-disable-next-line no-unused-vars
-   ({ theme }) => ({})
-)
+// const ButtonRoot = styled(MuiButton, {
+//    shouldForwardProp: (prop) => prop !== 'size' && prop !== 'color',
+//    name: 'MyButtonComponent',
+//    slot: 'Root',
+//    overridesResolver: (props, styl) => [
+//       styl.root,
+//       props.color && styl[props.color],
+//       props.size && styl[props.size],
+//       props.round && styl.round,
+//       props.link && styl.link,
+//       props.block && styl.block,
+//       props.simple && styl.simple,
+//       props.justIcon && styl.justIcon,
+//    ],
+// })(
+//    // eslint-disable-next-line no-unused-vars
+//    ({ theme }) => ({})
+// )
 
 const RegularButton = (props) => {
+   const classes = useStyles()
    const {
       color,
       round,
@@ -44,26 +46,32 @@ const RegularButton = (props) => {
       muiClasses,
       ...rest
    } = props
+   const btnClasses = `${classes.button} 
+      ${size ? classes[size] : ''} ${color ? classes[color] : ''}
+      ${round ? classes.round : ''} ${simple ? classes.simple : ''} 
+      ${block ? classes.block : ''} ${link ? classes.link : ''} 
+      ${justIcon ? classes.justIcon : ''} ${disabled ? classes.disabled : ''} 
+      ${className || ''}`
    return (
-      <ThemeProvider theme={customButtonTheme}>
-         <ButtonRoot
-            block={block}
-            color={color}
-            disabled={disabled}
-            simple={simple}
-            link={link}
-            size={size}
-            round={round}
-            classes={muiClasses}
-            justIcon={justIcon}
-            {...rest}
-         >
-            {children}
-         </ButtonRoot>
-      </ThemeProvider>
-      // <MuiButton {...rest} classes={muiClasses} className={btnClasses}>
-      //    {children}
-      // </MuiButton>
+      // <ThemeProvider theme={customButtonTheme}>
+      //    <ButtonRoot
+      //       block={block}
+      //       color={color}
+      //       disabled={disabled}
+      //       simple={simple}
+      //       link={link}
+      //       size={size}
+      //       round={round}
+      //       classes={muiClasses}
+      //       justIcon={justIcon}
+      //       {...rest}
+      //    >
+      //       {children}
+      //    </ButtonRoot>
+      // </ThemeProvider>
+      <Button {...rest} classes={muiClasses} className={btnClasses}>
+         {children}
+      </Button>
    )
 }
 

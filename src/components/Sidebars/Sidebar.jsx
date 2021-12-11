@@ -43,14 +43,17 @@ const Sidebar = (props) => {
                activePro = `${classes.activePro} `
                listItemClasses = ` ${classes[color]}`
             } else {
-               listItemClasses =
-                  activeRoute(prop.layout + prop.path) && classes[color]
+               listItemClasses = ` ${activeRoute(prop.layout + prop.path)} ? 
+                  ${classes[color]} : '' `
+               // activeRoute(prop.layout + prop.path) && classes[color]
                // classNames({
                //    [` ${classes[color]}`]: activeRoute(prop.layout + prop.path),
                // })
             }
-            const whiteFontClasses =
-               activeRoute(prop.layout + prop.path) && classes.whiteFont
+            const whiteFontClasses = ` ${activeRoute(
+               prop.layout + prop.path
+            )} ? ${classes.whiteFont} : '' `
+            // activeRoute(prop.layout + prop.path) && classes.whiteFont
             // classNames({
             //    [` ${classes.whiteFont}`]: activeRoute(prop.layout + prop.path),
             // })
@@ -69,9 +72,12 @@ const Sidebar = (props) => {
                      {typeof prop.icon === 'string' ? (
                         <Icon
                            className={
-                              rtlActive
-                                 ? `${classes.itemIcon} ${whiteFontClasses} ${classes.itemIconRTL}`
-                                 : `${classes.itemIcon} ${whiteFontClasses}`
+                              `${classes.itemIcon} 
+                           ${whiteFontClasses} 
+                           ${rtlActive ? classes.itemIconRTL : ''} `
+                              // rtlActive
+                              //    ? `${classes.itemIcon} ${whiteFontClasses} ${classes.itemIconRTL}`
+                              //    : `${classes.itemIcon} ${whiteFontClasses}`
                            }
                         >
                            {prop.icon}
@@ -79,18 +85,24 @@ const Sidebar = (props) => {
                      ) : (
                         <prop.icon
                            className={
-                              rtlActive
-                                 ? `${classes.itemIcon} ${whiteFontClasses} ${classes.itemIconRTL}`
-                                 : `${classes.itemIcon} ${whiteFontClasses}`
+                              `${classes.itemIcon} 
+                           ${whiteFontClasses} 
+                           ${rtlActive ? classes.itemIconRTL : ''} `
+                              // rtlActive
+                              //    ? `${classes.itemIcon} ${whiteFontClasses} ${classes.itemIconRTL}`
+                              //    : `${classes.itemIcon} ${whiteFontClasses}`
                            }
                         />
                      )}
                      <ListItemText
                         primary={rtlActive ? prop.rtlName : prop.name}
                         className={
-                           rtlActive
-                              ? `${classes.itemText} ${whiteFontClasses} ${classes.itemIconRTL}`
-                              : `${classes.itemText} ${whiteFontClasses}`
+                           `${classes.itemText} 
+                        ${whiteFontClasses} 
+                        ${rtlActive ? classes.itemTextRTL : ''} `
+                           // rtlActive
+                           //    ? `${classes.itemText} ${whiteFontClasses} ${classes.itemIconRTL}`
+                           //    : `${classes.itemText} ${whiteFontClasses}`
                         }
                         disableTypography
                      />
@@ -105,9 +117,10 @@ const Sidebar = (props) => {
          <a
             href="https://www.creative-tim.com?ref=mdr-sidebar"
             className={
-               rtlActive
-                  ? `${classes.logoLink} ${classes.logoLinkRTL}`
-                  : `${classes.logoLink}`
+               ` ${classes.logoLink} ${rtlActive ? classes.logoLinkRTL : ''}`
+               // rtlActive
+               //    ? `${classes.logoLink} ${classes.logoLinkRTL}`
+               //    : `${classes.logoLink}`
             }
             target="_blank"
             rel="noreferrer"
@@ -127,9 +140,11 @@ const Sidebar = (props) => {
                anchor={rtlActive ? 'left' : 'right'}
                open={open}
                classes={{
-                  paper: rtlActive
-                     ? `${classes.drawerPaper} ${classes.drawerPaperRTL}`
-                     : classes.drawerPaper,
+                  paper: ` ${classes.drawerPaper} 
+                  ${rtlActive ? classes.drawerPaperRTL : ''} `,
+                  // rtlActive
+                  //    ? `${classes.drawerPaper} ${classes.drawerPaperRTL}`
+                  //    : classes.drawerPaper,
                }}
                onClose={handleDrawerToggle}
                ModalProps={{
@@ -155,9 +170,11 @@ const Sidebar = (props) => {
                variant="permanent"
                open
                classes={{
-                  paper: rtlActive
-                     ? `${classes.drawerPaper} ${classes.drawerPaperRTL}`
-                     : classes.drawerPaper,
+                  paper: ` ${classes.drawerPaper} 
+                  ${rtlActive ? classes.drawerPaperRTL : ''} `,
+                  // rtlActive
+                  //    ? `${classes.drawerPaper} ${classes.drawerPaperRTL}`
+                  //    : classes.drawerPaper,
                }}
             >
                {brand}

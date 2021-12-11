@@ -42,7 +42,7 @@ const useStyles = makeStyles(appStyle(theme))
 const Admin = ({ ...rest }) => {
    const classes = useStyles()
    const mainPanel = createRef()
-   const [image, setImage] = useState('./img/sidebar-2.jpg')
+   const [image, setImage] = useState('/img/sidebar-2.jpg')
    const [color, setColor] = useState('blue')
    const [fixedClasses, setFixedClasses] = useState('dropdown show')
    const [mobileOpen, setMobileOpen] = useState(false)
@@ -89,8 +89,8 @@ const Admin = ({ ...rest }) => {
       <div className={classes.wrapper}>
          <Sidebar
             routes={routes}
-            logoText="Creative Tim"
-            logo="./img/reactlogo.png"
+            logoText="Peonet"
+            logo="/img/reactlogo.png"
             image={image}
             handleDrawerToggle={handleDrawerToggle}
             open={mobileOpen}
