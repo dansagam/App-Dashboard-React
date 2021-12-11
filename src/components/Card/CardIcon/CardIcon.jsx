@@ -15,7 +15,7 @@ const useStyles = makeStyles(cardIconStyle)
 //    ],
 //    // eslint-disable-next-line no-unused-vars
 // })(({ theme }) => ({}))
-const CardIcon = () => {
+const CardIcon = (props) => {
    const classes = useStyles()
    const { className, children, color, ...rest } = props
    const cardIconClasses = `${classes.cardIcon} 

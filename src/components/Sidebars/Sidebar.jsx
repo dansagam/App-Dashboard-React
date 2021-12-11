@@ -59,7 +59,7 @@ const Sidebar = (props) => {
             // })
             return (
                <NavLink
-                  to={prop.layout + prop.path}
+                  to={`${prop.path}`}
                   className={activePro + classes.item}
                   activeClassName="active"
                   // eslint-disable-next-line react/no-array-index-key

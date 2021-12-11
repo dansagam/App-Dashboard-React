@@ -12,6 +12,7 @@ import TableCell from '@mui/material/TableCell'
 import Edit from '@mui/icons-material/Edit'
 import Close from '@mui/icons-material/Close'
 import Check from '@mui/icons-material/Check'
+import { useState } from 'react'
 import styles from './taskThemes'
 
 const useStyles = makeStyles(styles)
@@ -19,7 +20,7 @@ const useStyles = makeStyles(styles)
 const Tasks = (props) => {
    const classes = useStyles()
    const { tasksIndexes, tasks, rtlActive, checkedIndexes } = props
-   const [checked, setChecked] = React.useState([...checkedIndexes])
+   const [checked, setChecked] = useState([...checkedIndexes])
    const handleToggle = (value) => {
       const currentIndex = checked.indexOf(value)
       const newChecked = [...checked]

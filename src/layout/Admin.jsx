@@ -1,10 +1,12 @@
 import { createRef, useEffect, useState } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+// import { Routes, Route, Navigate, useRoutes, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import PerfectScrollbar from 'perfect-scrollbar'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
 import { makeStyles } from '@mui/styles'
 // eslint-disable-next-line no-unused-vars
 import { styled, ThemeProvider, createTheme } from '@mui/material/styles'
+// eslint-disable-next-line import/no-cycle
 import Navbar from '../components/Navbars/Navbar'
 import Footer from '../components/Footer/Footer'
 import Sidebar from '../components/Sidebars/Sidebar'
@@ -14,32 +16,25 @@ import appStyle from './adminTheme'
 // import bgImage from './img/sidebar-2.jpg'
 
 let ps
+// {/* <Route path="/" element={<Navigate replace to="/admin" />} />
+// <Route path="admin" element={<Navigate replace to="/admin/dashboard" />}> */}
 
-const switchRoutes = (
-   <Routes>
-      {routes.map((prop, index) => {
-         if (prop.layout === '/admin') {
-            return (
-               <Route
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={index}
-                  path={prop.layout + prop.path}
-                  element={<prop.component />}
-               />
-            )
-         }
-         return null
-      })}
-      {/* //must change the element view component */}
-      <Route
-         path="/admin"
-         element={<Navigate replace to="/admin/dashboard" />}
-      />
-   </Routes>
-)
+// const switchRoutes = (
+//    <Routes>
+//       {routes.map((prop, index) => (
+//          <Route
+//             // eslint-disable-next-line react/no-array-index-key
+//             key={index}
+//             path={prop.path}
+//             element={prop.element}
+//          />
+//       ))}
+//    </Routes>
+// )
 const theme = createTheme()
 const useStyles = makeStyles(appStyle(theme))
 const Admin = ({ ...rest }) => {
+   // const switchRoutes = useRoutes(sideRoutes)
    const classes = useStyles()
    const mainPanel = createRef()
    const [image, setImage] = useState('/img/sidebar-2.jpg')
@@ -63,6 +58,7 @@ const Admin = ({ ...rest }) => {
       setMobileOpen(!mobileOpen)
    }
    const getRoute = () => window.location.pathname !== '/admin/maps'
+   // console.log(getRoute())
    const resizeFunction = () => {
       if (window.innerWidth >= 960) {
          setMobileOpen(false)
@@ -103,13 +99,31 @@ const Admin = ({ ...rest }) => {
                handleDrawerToggle={handleDrawerToggle}
                {...rest}
             />
-            {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
-            {getRoute() ? (
+            {/* On the /maps route we want the map to be on full screen -
+            this is not possible if the content and conatiner classes are present because
+            they have some paddings which would make the map smaller */}
+            {/* {getRoute() ? (
                <div className={classes.content}>
                   <div className={classes.container}>{switchRoutes}</div>
                </div>
             ) : (
                <div className={classes.map}>{switchRoutes}</div>
+            )} */}
+            {/* <div className={classes.content}>
+               <div className={classes.container}>
+                  <Outlet />
+               </div>
+            </div> */}
+            {getRoute() ? (
+               <div className={classes.content}>
+                  <div className={classes.container}>
+                     <Outlet />
+                  </div>
+               </div>
+            ) : (
+               <div className={classes.map}>
+                  <Outlet />
+               </div>
             )}
             {getRoute() ? <Footer /> : null}
             <FixedPlugin
@@ -126,3 +140,24 @@ const Admin = ({ ...rest }) => {
 }
 
 export default Admin
+// import { Outlet } from 'react-router-dom'
+
+// const Admin = () => (
+//    <div>
+//       <main style={{ display: 'flex' }}>
+//          <p>djhdhjd</p>
+//          <p style={{ display: 'flex' }}>
+//             <p>djdd</p>
+//             <p>dndjdhdd</p>
+//             <p>
+//                <Outlet />
+//             </p>
+//             <p>dkjdkjd</p>
+//          </p>
+//          <p>sdhdjhd</p>
+//       </main>
+//       admin testing
+//    </div>
+// )
+
+// export default Admin
