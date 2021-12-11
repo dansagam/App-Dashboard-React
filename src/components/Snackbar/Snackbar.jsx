@@ -22,6 +22,11 @@ const Snackbar = (props) => {
       closeNotification,
    } = props
    let action = []
+
+   const messageClasses = `${icon !== undefined ? classes.iconMessage : ''}`
+   //   classNames({
+   //    [classes.iconMessage]: icon !== undefined,
+   //  });
    if (close !== undefined) {
       action = [
          <IconButton

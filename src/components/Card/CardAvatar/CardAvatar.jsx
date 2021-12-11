@@ -26,7 +26,7 @@ const useStyles = makeStyles(cardAvatarStyle)
 const CardAvatar = (props) => {
    const classes = useStyles()
    const {
-      // children,
+      children,
       className,
       plain,
       component,
@@ -63,7 +63,7 @@ const CardAvatar = (props) => {
 }
 
 CardAvatar.propTypes = {
-   // children: PropTypes.node.isRequired,
+   children: PropTypes.node.isRequired,
    className: PropTypes.string,
    alt: PropTypes.string,
    component: PropTypes.oneOf(['img']).isRequired,

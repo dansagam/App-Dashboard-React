@@ -12,7 +12,7 @@ const SmallRoot = styled('div')(({ theme }) => ({
 const ParagraphRoot = styled('div')(({ theme }) => ({
    ...theme.quoteText,
 }))
-const Quote = () => {
+const Quote = (props) => {
    const { text, author } = props
    return (
       <ThemeProvider theme={typographyTheme}>

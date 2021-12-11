@@ -6,7 +6,7 @@ const DivRoot = styled('div')(({ theme }) => ({
    ...theme.defaultFontStyle,
    ...theme.successText,
 }))
-const Success = () => {
+const Success = (props) => {
    const { children } = props
    return (
       <ThemeProvider theme={typographyTheme}>

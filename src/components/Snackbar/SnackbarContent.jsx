@@ -13,6 +13,7 @@ const SnackbarContent = (props) => {
    const classes = useStyles()
    const { message, color, close, icon, rtlActive } = props
    let action = []
+   const messageClasses = `${icon !== undefined ? classes.iconMessage : ''}`
    if (close !== undefined) {
       action = [
          <IconButton
