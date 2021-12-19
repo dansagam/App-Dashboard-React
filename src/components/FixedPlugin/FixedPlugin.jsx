@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import Button from '../CustomButtons/Button'
 
-const imagine1 = './img/sidebar-1.jpg'
-const imagine2 = './img/sidebar-2.jpg'
-const imagine3 = './img/sidebar-3.jpg'
-const imagine4 = './img/sidebar-4.jpg'
+const imagine1 = '/img/sidebar-1.jpg'
+const imagine2 = '/img/sidebar-2.jpg'
+const imagine3 = '/img/sidebar-3.jpg'
+const imagine4 = '/img/sidebar-4.jpg'
 
 const FixedPlugin = (props) => {
    const {
@@ -32,7 +32,7 @@ const FixedPlugin = (props) => {
       handleFixedClick()
    }
    return (
-      <div>
+      <div className={`fixed-plugin ${rtlActive ? 'rtl-fixed-plugin' : ''}`}>
          <div id="fixedPluginClasses" className={fixedClasses}>
             <div onClick={handleClick}>
                <FontAwesomeIcon icon={faCog} />
@@ -151,7 +151,7 @@ const FixedPlugin = (props) => {
                <div className="button-container">
                   <Button
                      color="success"
-                     href="https://www.creative-tim.com/product/material-dashboard-react?ref=mdr-fixed-plugin"
+                     href="#https://www.creative-tim.com/product/material-dashboard-react?ref=mdr-fixed-plugin"
                      target="_blank"
                      fullWidth
                   >
@@ -163,7 +163,7 @@ const FixedPlugin = (props) => {
                <div className="button-container">
                   <Button
                      color="warning"
-                     href="https://www.creative-tim.com/product/material-dashboard-pro-react?ref=mdr-fixed-plugin"
+                     href="#https://www.creative-tim.com/product/material-dashboard-pro-react?ref=mdr-fixed-plugin"
                      target="_blank"
                      fullWidth
                   >
@@ -175,7 +175,7 @@ const FixedPlugin = (props) => {
                <Button
                   color="info"
                   fullWidth
-                  href="https://demos.creative-tim.com/material-dashboard-react/#/documentation/tutorial?ref=mdr-fixed-plugin"
+                  href="#https://demos.creative-tim.com/material-dashboard-react/#/documentation/tutorial?ref=mdr-fixed-plugin"
                   target="_blank"
                >
                   Documentation

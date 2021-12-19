@@ -260,9 +260,9 @@ footer ul li a:hover {
 
 .fixed-plugin li > a,
 .fixed-plugin .badge {
-   transition: all 0.34s;
    -webkit-transition: all 0.34s;
    -moz-transition: all 0.34s;
+   transition: all 0.34s;
    text-decoration: none;
 }
 
@@ -390,8 +390,8 @@ footer ul li a:hover {
 }
 
 .fixed-plugin .adjustments-line p {
-   float: left;
    display: inline-block;
+   float: left;
    margin-bottom: 0;
    font-size: 1em;
    color: #3c4858;
@@ -480,9 +480,9 @@ footer ul li a:hover {
    position: absolute;
    top: 46px;
    width: 16px;
-   transform: translateY(-50%);
    -webkit-transform: translateY(-50%);
    -moz-transform: translateY(-50%);
+   transform: translateY(-50%);
 }
 
 .fixed-plugin .dropdown.show .dropdown-menu {
